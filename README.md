@@ -77,4 +77,8 @@ Tests can be run by executing `chmod +x make_tests.sh && ./make_tests.sh`
 | Bitwise Ops | In progress | In progress |
 | Different Bases | In progress | In progress |
 
+<<<<<<< HEAD
 *- Bounded by memory
+=======
+*- Bounded by memory
+>>>>>>> b9ff80c43d96d8111735fa971bd5bb6d91aa95ca
