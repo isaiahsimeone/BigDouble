@@ -8,7 +8,7 @@
 #include <assert.h> /* Libcheck */
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>	/* strlen() and memcpy() */
+#include <string.h> /* strlen() and memcpy() */
 #include <inttypes.h>
 #include <math.h>
 
@@ -21,9 +21,9 @@
 
 #define CHAR_TO_NUM(i)		(i - '0')
 #define NUM_TO_CHAR(i)		(i + '0')
-#define MAX(a, b)			(((a)>(b))?(a):(b))
-#define MIN(a, b)			(((a)<(b))?(a):(b))
-#define ABS(a)				(((a)<(0))?(-a):(a))
+#define MAX(a, b)		(((a)>(b))?(a):(b))
+#define MIN(a, b)		(((a)<(b))?(a):(b))
+#define ABS(a)			(((a)<(0))?(-a):(a))
 #define BOTH_POS(a,b)		(a->sign == POSITIVE && b->sign == POSITIVE)
 #define BOTH_NEG(a,b)		(a->sign == NEGATIVE && b->sign == NEGATIVE)
 
@@ -56,12 +56,12 @@ static int 			_bigdouble_is_eq(BigDouble*, BigDouble*);
 static int 			_bigdouble_is_eq2(BigDouble*, BigDouble*);
 static int 			_bigdouble_is_less(BigDouble*, BigDouble*, int);
 static int 			_bigdouble_update_start(BigDouble*);
-static void 		_bigdouble_swap(BigDouble*, BigDouble*);
+static void 			_bigdouble_swap(BigDouble*, BigDouble*);
 static int 			_bigdouble_resize(BigDouble*);
 static int 			_bigdouble_resize_mantissa(BigDouble*);
-static void 		_bigdouble_add_mantissa(BigDouble*, BigDouble*);
-static void 		_bigdouble_sub_mantissa(BigDouble*, BigDouble*);
-static void 		_bigdouble_swap_mantissa(BigDouble*, BigDouble*);
+static void 			_bigdouble_add_mantissa(BigDouble*, BigDouble*);
+static void 			_bigdouble_sub_mantissa(BigDouble*, BigDouble*);
+static void 			_bigdouble_swap_mantissa(BigDouble*, BigDouble*);
 
 /* Yet to be implemented */
 int 				bigdouble_or(BigDouble*, BigDouble*);
@@ -74,7 +74,7 @@ int 				bigdouble_mod(BigDouble*, BigDouble*);
 int 				bigdouble_pow(BigDouble*, BigDouble*);
 
 /* Debugging functions */
-static void 		dump_bigdouble(BigDouble*, const char*);
+static void 			dump_bigdouble(BigDouble*, const char*);
 
 
 /*
@@ -83,11 +83,11 @@ static void 		dump_bigdouble(BigDouble*, const char*);
  * within the string. destroy_bigdouble() should be used to free memory
  * associated with the returned BigDouble structure.
  *
- *     val: The string representation of the number to initialise into a
- *		    new BigDouble structure.
+ *    val: The string representation of the number to initialise into a
+ *	   new BigDouble structure.
  *
  * returns: A pointer to a BigDouble structure initialised with the number
- * 			specified in the provided string 'val'.
+ *  	    specified in the provided string 'val'.
  */
 BigDouble* init_bigdouble(const char* val)
 {
@@ -163,11 +163,11 @@ void print_bigdouble(BigDouble* b)
  * a number. It is the responsibility of the calling scope to ensure
  * deallocation of the string returned.
  *
- * 		 b: A pointer to the BigDouble structure that should be converted
- *	  		to a string.
+ * 	 b: A pointer to the BigDouble structure that should be converted
+ *	    to a string.
  *
  * returns: A string representing the numerical value of the specified
- *			BigDouble structure.
+ *	    BigDouble structure.
  */
 char* bigdouble_str(BigDouble* b)
 {
@@ -207,10 +207,10 @@ char* bigdouble_str(BigDouble* b)
  * i.e. the internal array containing the integral portion of the number
  * is doubled in size.
  *
- * 		 b: A pointer to the BigDouble structure to be resized.
+ * 	 b: A pointer to the BigDouble structure to be resized.
  *
  * returns: An integer, the new index of where the representation of the
- *			integral portion of the number commences
+ *	    integral portion of the number commences
  */
 static int _bigdouble_resize(BigDouble* b)
 {
@@ -233,7 +233,7 @@ static int _bigdouble_resize(BigDouble* b)
  * Determines whether the number expressed by a specified BigDouble
  * structure is equivalent to zero.
  *
- * 		 b: A pointer to the BigDouble structure to check for being zero.
+ *       b: A pointer to the BigDouble structure to check for being zero.
  *
  * returns: 1 if the specified BigDouble has zero in value, 0 otherwise.
  */
@@ -256,7 +256,7 @@ int bigdouble_is_zero(BigDouble* b)
 /*
  * Free's the memory allocated within the specified BigDouble structure.
  *
- *		 b: A pointer to the BigDouble structure to be deallocated. 
+ *	 b: A pointer to the BigDouble structure to be deallocated. 
  *
  * returns: 1
  */
@@ -272,7 +272,7 @@ int destroy_bigdouble(BigDouble* b)
  * Increments the numerical value represented within the specified
  * BigDouble structure.
  *
- *	  	 b: A pointer to the BigDouble structure to be incremented.
+ *	 b: A pointer to the BigDouble structure to be incremented.
  *
  * returns: 0, always
  */
@@ -290,7 +290,7 @@ int bigdouble_inc(BigDouble* b)
  * Decrements the numerical value represented within the specified
  * BigDouble structure.
  *
- *	  	 b: A pointer to the BigDouble structure to be decremented.
+ *       b: A pointer to the BigDouble structure to be decremented.
  *
  * returns: 0, always
  */
@@ -309,9 +309,9 @@ int bigdouble_dec(BigDouble* b)
  * the values within the two structures and collect the result in the
  * first (BigDouble parameter 'a').
  *
- * 		 a: A pointer to a BigDouble structure to add 'b' to. i.e. to gather
- *    		the result in
- * 		 b: A pointer to a BigDouble structure to add to 'a'
+ * 	 a: A pointer to a BigDouble structure to add 'b' to. i.e. to gather
+ *    	    the result in
+ * 	 b: A pointer to a BigDouble structure to add to 'a'
  *
  * returns: 0
  */
@@ -381,10 +381,10 @@ int bigdouble_add(BigDouble* a, BigDouble* b)
  * (the fractional portion) of each numbers. The resulting, summed mantissa
  * will be gathered in the first specified BigDouble (a)
  *
- *       a: A pointer to a BigDouble structure to add the mantissa of 'b' to.
- *		    the result will be gathered in this BigDouble structure
- *		 b: A pointer to a BigDouble structure who's mantissa will be added
- *		    to a
+ *  a:  A pointer to a BigDouble structure to add the mantissa of 'b' to.
+ *	the result will be gathered in this BigDouble structure
+ *  b:  A pointer to a BigDouble structure who's mantissa will be added
+ *	to a
  */
 static void _bigdouble_add_mantissa(BigDouble* a, BigDouble* b)
 {
@@ -442,9 +442,9 @@ BigDouble* bigdouble_copy(BigDouble* target)
  * the values within the two structures and collect the result in the
  * first (BigDouble parameter 'a').
  *
- * 		 a: A pointer to a BigDouble structure to subtract 'b' from. i.e. to gather
- *    		the result in
- * 		 b: A pointer to a BigDouble structure to subtract from 'a'
+ * a: A pointer to a BigDouble structure to subtract 'b' from. i.e. to gather
+ *    the result in
+ * b: A pointer to a BigDouble structure to subtract from 'a'
  *
  * returns: 0
  */
@@ -514,10 +514,10 @@ int bigdouble_sub(BigDouble* a, BigDouble* b)
  * (the fractional portion) of each numbers. The resulting, subtracted mantissa
  * will be gathered in the first specified BigDouble (a)
  *
- *       a: A pointer to a BigDouble structure to subtract the mantissa of 'b' from.
- *		    the result will be gathered in this BigDouble structure
- *		 b: A pointer to a BigDouble structure who's mantissa will be subtracted
- *		    from a
+ * a: A pointer to a BigDouble structure to subtract the mantissa of 'b' from.
+ *    the result will be gathered in this BigDouble structure
+ * b: A pointer to a BigDouble structure who's mantissa will be subtracted
+ *    from a
  */
 static void _bigdouble_sub_mantissa(BigDouble* a, BigDouble* b)
 {
@@ -556,11 +556,11 @@ static void _bigdouble_sub_mantissa(BigDouble* a, BigDouble* b)
  * If the specified BigDouble structure has no mantissa, one will be created
  * with 1 space for 1 element.
  *
- *       b: A pointer to the BigDouble structure that will have it's mantissa
- *			resized.
+ *      b: A pointer to the BigDouble structure that will have it's mantissa
+ *         resized.
  *
  * returns: An integer specifiying the middle of the newly resized mantissa.
- *			(i.e. the index at which the mantissa now commences from)
+ *	    (i.e. the index at which the mantissa now commences from)
  *
  */
 static int _bigdouble_resize_mantissa(BigDouble* b)
@@ -594,9 +594,9 @@ static int _bigdouble_resize_mantissa(BigDouble* b)
  * Swaps two BigDouble structures to point to each other
  *
  * a: A pointer to a BigDouble structure that will point to
- *	  the argument 'b' 
+ *    the argument 'b' 
  * b: A pointer to a BigDouble structure that will point to
- *	  the argument 'a'
+ *    the argument 'a'
  */
 static void _bigdouble_swap(BigDouble* a, BigDouble* b)
 {
@@ -678,8 +678,8 @@ static int _bigdouble_update_start(BigDouble* a)
  * specified by 'op' argument.
  *
  *       a: A pointer to the first comparison argument
- *	    op: A string defining which comparison operation should be performed
- *	     b: A pointer to the second comparison argument
+ *	op: A string defining which comparison operation should be performed
+ *	 b: A pointer to the second comparison argument
  *
  * returns: The result of comparison (1 or 0)
  */
@@ -792,10 +792,10 @@ static int _bigdouble_is_eq2(BigDouble* a, BigDouble* b)
  * the first specified argument (a) is less than the second specified
  * argument (b). (or equal if specified)
  *
- * 		  a: A pointer to the first BigDouble structure to be compared
- *		  b: A pointer to the second BigDouble structure to be compared
+ * 	  a: A pointer to the first BigDouble structure to be compared
+ *	  b: A pointer to the second BigDouble structure to be compared
  * or_equal: If set to 1, this function will also check whether a and b
- *			 are equal
+ *	     are equal
  *
  *  returns: 1 if a is less than b (or equal, if specified). 0 otherwise
  */
